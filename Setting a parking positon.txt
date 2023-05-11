@@ -1,0 +1,11 @@
+1. Mount the underside of a parking post in the position you want
+2. Set the correct height for the parking post.
+3. Run the macro file for the corresponding tool
+4. Wait the message to pop up and mount set the tool against the carriage 
+5. press "ok" and wait for the tool to be locked
+6. By hand move the carriage to the tool post and set it in place 
+7. Move the tool in and out a couple of times to see if it moves smoothly 
+8. Once happy with the position press "ok" again
+9. Wait for the printer to home itself and set the positions
+10. Repeat this for all other parking posts
+11. Once all the positions have been set reset the printer so it picks the correct values
