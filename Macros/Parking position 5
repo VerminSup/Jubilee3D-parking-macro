@@ -1,0 +1,29 @@
+
+
+; Parking position tool 5 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+M18 X Y                                                                                         ; Turns off stepper motors XY
+M98 P"homeu.g"                                                                                  ; Home U
+M291 P"Put tool on head" S2                                                                     ; Display message and waits for user to put the tool on the carriage 
+M98 P"/macros/tool_lock.g"                                                                      ; Lock the tool in place
+M291 P"Move Tool into position" S2                                                              ; Display message and wait for user to guid the tool into the tool dock
+M98 P"/macros/tool_unlock.g"                                                                    ; Unlock the tool
+
+M564 S0                                                                                         ; Allow axes to move without homing
+G92 Y0                                                                                          ; Set Y 0
+G91                                                                                             ; Set relative
+G1 Y-400 H4                                                                                     ; Move towards Y endstop
+G1 Y<distance to bed 0>                                                                                          ; Move to bed 0
+G90                                                                                             ; Set absolute mode
+
+M564 S0                                                                                         ; Allow axes to move without homing
+G92 X0                                                                                          ; Set X o
+G91                                                                                             ; Set relative mode
+G1 X-400 H4                                                                                     ; Move towards X endstop
+G1 X<distance to bed 0>                                                                                        ; Move towards bed 0
+G90                                                                                             ; Set absolute mode
+
+echo >"Parking position 5.g" "global DockX_Tool5 = ", move.axes[0].machinePosition * -1         ; Create new file with X parking position
+echo >>"Parking position 5.g" "global DockY_Tool5 = ", move.axes[1].machinePosition * -1        ; Write new line with Y parking position
+
+M18 X Y                                                                                         ; Turn off XY motors
